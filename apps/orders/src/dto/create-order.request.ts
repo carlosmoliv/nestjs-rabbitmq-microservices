@@ -5,7 +5,7 @@ import {
   IsString,
 } from 'class-validator';
 
-export class CreateOrderDto {
+export class CreateOrderRequest {
   @IsString()
   @IsNotEmpty()
   name: string;
@@ -14,5 +14,5 @@ export class CreateOrderDto {
   price: number;
 
   @IsPhoneNumber()
-  phoneNumber: number;
+  phoneNumber: string;
 }
