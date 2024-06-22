@@ -21,7 +21,9 @@ import { BILLING_SERVICE } from './constants/service';
     }),
     DatabaseModule,
     MongooseModule.forFeature([{ name: Order.name, schema: OrderSchema }]),
-    RmqModule.register({ name: BILLING_SERVICE }),
+    RmqModule.register({
+      name: BILLING_SERVICE,
+    }),
   ],
   controllers: [OrdersController],
   providers: [OrdersService, OrdersRepository],
