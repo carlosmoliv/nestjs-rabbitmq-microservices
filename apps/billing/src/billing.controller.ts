@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { BillingService } from './billing.service';
-import { EventPattern, Payload, RmqContext } from '@nestjs/microservices';
+import { Ctx, EventPattern, Payload, RmqContext } from '@nestjs/microservices';
 import { RmqService } from '@app/common';
 
 @Controller()
@@ -11,7 +11,7 @@ export class BillingController {
   ) {}
 
   @EventPattern('order_created')
-  async handleOrderCreated(@Payload() data: any, context: RmqContext) {
+  async handleOrderCreated(@Payload() data: any, @Ctx() context: RmqContext) {
     this.billingService.bill(data);
     this.rmqService.ack(context);
   }
